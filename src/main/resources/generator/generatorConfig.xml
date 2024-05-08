@@ -20,17 +20,20 @@
                         password="${jdbc.password}">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.isea533.mybatis.model"
+        <!-- 实体类-->
+        <javaModelGenerator targetPackage="com.itmuch.usercenter.domain.entity.${moduleName}"
                             targetProject="src/main/java"/>
 
-        <sqlMapGenerator targetPackage="mapper"
+        <!-- mapper.xml-->
+        <sqlMapGenerator targetPackage="com.itmuch.usercenter.dao.${moduleName}"
                          targetProject="src/main/resources"/>
 
-        <javaClientGenerator targetPackage="com.isea533.mybatis.mapper"
+        <!--  mapper接口-->
+        <javaClientGenerator targetPackage="com.itmuch.usercenter.dao.${moduleName}"
                              targetProject="src/main/java"
                              type="XMLMAPPER"/>
-
-        <table tableName="user_info">
+        <!--  为哪张表生成代码-->
+        <table tableName="${tableName}">
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
     </context>
