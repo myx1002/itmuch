@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itmuch.mapper.ShareMapper">
+  <resultMap id="BaseResultMap" type="com.itmuch.domain.entity.Share">
+    <!--@mbg.generated-->
+    <!--@Table `share`-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_original" jdbcType="BOOLEAN" property="isOriginal" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="cover" jdbcType="VARCHAR" property="cover" />
+    <result column="summary" jdbcType="VARCHAR" property="summary" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="download_url" jdbcType="VARCHAR" property="downloadUrl" />
+    <result column="buy_count" jdbcType="INTEGER" property="buyCount" />
+    <result column="show_flag" jdbcType="BOOLEAN" property="showFlag" />
+    <result column="audit_status" jdbcType="VARCHAR" property="auditStatus" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, title, create_time, update_time, is_original, author, cover, summary, 
+    price, download_url, buy_count, show_flag, audit_status, reason
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `share`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from `share`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.itmuch.domain.entity.Share" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `share` (user_id, title, create_time, 
+      update_time, is_original, author, 
+      cover, summary, price, 
+      download_url, buy_count, show_flag, 
+      audit_status, reason)
+    values (#{userId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isOriginal,jdbcType=BOOLEAN}, #{author,jdbcType=VARCHAR}, 
+      #{cover,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
+      #{downloadUrl,jdbcType=VARCHAR}, #{buyCount,jdbcType=INTEGER}, #{showFlag,jdbcType=BOOLEAN}, 
+      #{auditStatus,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.itmuch.domain.entity.Share" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `share`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isOriginal != null">
+        is_original,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="cover != null">
+        cover,
+      </if>
+      <if test="summary != null">
+        summary,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="downloadUrl != null">
+        download_url,
+      </if>
+      <if test="buyCount != null">
+        buy_count,
+      </if>
+      <if test="showFlag != null">
+        show_flag,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOriginal != null">
+        #{isOriginal,jdbcType=BOOLEAN},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null">
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="downloadUrl != null">
+        #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="buyCount != null">
+        #{buyCount,jdbcType=INTEGER},
+      </if>
+      <if test="showFlag != null">
+        #{showFlag,jdbcType=BOOLEAN},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itmuch.domain.entity.Share">
+    <!--@mbg.generated-->
+    update `share`
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOriginal != null">
+        is_original = #{isOriginal,jdbcType=BOOLEAN},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null">
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="downloadUrl != null">
+        download_url = #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="buyCount != null">
+        buy_count = #{buyCount,jdbcType=INTEGER},
+      </if>
+      <if test="showFlag != null">
+        show_flag = #{showFlag,jdbcType=BOOLEAN},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itmuch.domain.entity.Share">
+    <!--@mbg.generated-->
+    update `share`
+    set user_id = #{userId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_original = #{isOriginal,jdbcType=BOOLEAN},
+      author = #{author,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      download_url = #{downloadUrl,jdbcType=VARCHAR},
+      buy_count = #{buyCount,jdbcType=INTEGER},
+      show_flag = #{showFlag,jdbcType=BOOLEAN},
+      audit_status = #{auditStatus,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update `share`
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="user_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.userId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="title = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.title,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="is_original = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.isOriginal,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="author = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.author,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cover = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.cover,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="summary = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.summary,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="price = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.price,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="download_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.downloadUrl,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="buy_count = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.buyCount,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="show_flag = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.showFlag,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="audit_status = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.auditStatus,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="reason = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.reason,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `share`
+    (user_id, title, create_time, update_time, is_original, author, cover, summary, price, 
+      download_url, buy_count, show_flag, audit_status, reason)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.userId,jdbcType=INTEGER}, #{item.title,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, 
+        #{item.updateTime,jdbcType=TIMESTAMP}, #{item.isOriginal,jdbcType=BOOLEAN}, #{item.author,jdbcType=VARCHAR}, 
+        #{item.cover,jdbcType=VARCHAR}, #{item.summary,jdbcType=VARCHAR}, #{item.price,jdbcType=INTEGER}, 
+        #{item.downloadUrl,jdbcType=VARCHAR}, #{item.buyCount,jdbcType=INTEGER}, #{item.showFlag,jdbcType=BOOLEAN}, 
+        #{item.auditStatus,jdbcType=VARCHAR}, #{item.reason,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.itmuch.domain.entity.Share" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `share`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      user_id,
+      title,
+      create_time,
+      update_time,
+      is_original,
+      author,
+      cover,
+      summary,
+      price,
+      download_url,
+      buy_count,
+      show_flag,
+      audit_status,
+      reason,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{userId,jdbcType=INTEGER},
+      #{title,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{isOriginal,jdbcType=BOOLEAN},
+      #{author,jdbcType=VARCHAR},
+      #{cover,jdbcType=VARCHAR},
+      #{summary,jdbcType=VARCHAR},
+      #{price,jdbcType=INTEGER},
+      #{downloadUrl,jdbcType=VARCHAR},
+      #{buyCount,jdbcType=INTEGER},
+      #{showFlag,jdbcType=BOOLEAN},
+      #{auditStatus,jdbcType=VARCHAR},
+      #{reason,jdbcType=VARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      user_id = #{userId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_original = #{isOriginal,jdbcType=BOOLEAN},
+      author = #{author,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      download_url = #{downloadUrl,jdbcType=VARCHAR},
+      buy_count = #{buyCount,jdbcType=INTEGER},
+      show_flag = #{showFlag,jdbcType=BOOLEAN},
+      audit_status = #{auditStatus,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.itmuch.domain.entity.Share" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `share`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isOriginal != null">
+        is_original,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="cover != null">
+        cover,
+      </if>
+      <if test="summary != null">
+        summary,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="downloadUrl != null">
+        download_url,
+      </if>
+      <if test="buyCount != null">
+        buy_count,
+      </if>
+      <if test="showFlag != null">
+        show_flag,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOriginal != null">
+        #{isOriginal,jdbcType=BOOLEAN},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null">
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="downloadUrl != null">
+        #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="buyCount != null">
+        #{buyCount,jdbcType=INTEGER},
+      </if>
+      <if test="showFlag != null">
+        #{showFlag,jdbcType=BOOLEAN},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOriginal != null">
+        is_original = #{isOriginal,jdbcType=BOOLEAN},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null">
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="downloadUrl != null">
+        download_url = #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="buyCount != null">
+        buy_count = #{buyCount,jdbcType=INTEGER},
+      </if>
+      <if test="showFlag != null">
+        show_flag = #{showFlag,jdbcType=BOOLEAN},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
