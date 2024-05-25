@@ -4,6 +4,8 @@ import com.itmuch.domain.dto.ShareDTO;
 import com.itmuch.domain.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ public class ShareServiceImpl extends ServiceImpl<ShareMapper, Share> implements
     private final ShareMapper shareMapper;
 
     private final RestTemplate restTemplate;
+
+    private final DiscoveryClient discoveryClient;
 
     @Override
     public int updateBatch(List<Share> list) {
@@ -71,9 +75,14 @@ public class ShareServiceImpl extends ServiceImpl<ShareMapper, Share> implements
         Share shareInfo = shareMapper.selectByPrimaryKey(id);
         Integer userId = shareInfo.getUserId();
 
+        List<ServiceInstance> instances = discoveryClient.getInstances("it-user-center");
+        String userServiceHost = instances.stream()
+                .map(instance -> instance.getUri().toString() + "users/{id}")
+                .findFirst()
+                .orElseThrow(()-> new IllegalArgumentException("获取用户信息失败！"));
         // http调用用户服务，获取用户信息
         ResponseEntity<UserDTO> userDTO = this.restTemplate.getForEntity(
-                "http://127.0.0.1:8081/users/{id}", UserDTO.class, userId
+                userServiceHost, UserDTO.class, userId
         );
 
         ShareDTO res = new ShareDTO();

@@ -29,7 +29,7 @@ public class ShareController {
     */
     @GetMapping("/{id}")
     public ShareDTO selectOne(@PathVariable Integer id) {
-    return shareService.selectByPrimaryKey(id);
+        return shareService.selectByPrimaryKey(id);
     }
 
 }
