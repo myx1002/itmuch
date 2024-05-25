@@ -12,8 +12,8 @@
     <artifactId>itmuch-boot</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>content-center</module>
-        <module>user-center</module>
+        <module>it-content-center</module>
+        <module>it-user-center</module>
     </modules>
 
     <properties>
