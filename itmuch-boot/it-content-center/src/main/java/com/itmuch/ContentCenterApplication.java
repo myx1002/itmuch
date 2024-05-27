@@ -1,5 +1,6 @@
 package com.itmuch;
 
+import com.itmuch.configuration.NacosWeightedRule;
 import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RandomRule;
 import org.springframework.boot.SpringApplication;
@@ -27,4 +28,9 @@ public class ContentCenterApplication {
 //    public IRule randomRule() {
 //        return  new RandomRule();
 //    }
+
+//    @Bean
+    public IRule nacosWeightedRule() {
+        return new NacosWeightedRule();
+    }
 }
