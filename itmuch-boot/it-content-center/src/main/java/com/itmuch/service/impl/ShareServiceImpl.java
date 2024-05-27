@@ -75,19 +75,26 @@ public class ShareServiceImpl extends ServiceImpl<ShareMapper, Share> implements
         Share shareInfo = shareMapper.selectByPrimaryKey(id);
         Integer userId = shareInfo.getUserId();
 
-        List<ServiceInstance> instances = discoveryClient.getInstances("it-user-center");
-        String userServiceHost = instances.stream()
-                .map(instance -> instance.getUri().toString() + "users/{id}")
-                .findFirst()
-                .orElseThrow(()-> new IllegalArgumentException("获取用户信息失败！"));
-        // http调用用户服务，获取用户信息
-        ResponseEntity<UserDTO> userDTO = this.restTemplate.getForEntity(
-                userServiceHost, UserDTO.class, userId
+//        List<ServiceInstance> instances = discoveryClient.getInstances("it-user-center");
+//        String userServiceHost = instances.stream()
+//                .map(instance -> instance.getUri().toString() + "users/{id}")
+//                .findFirst()
+//                .orElseThrow(()-> new IllegalArgumentException("获取用户信息失败！"));
+//        // http调用用户服务，获取用户信息
+//        ResponseEntity<UserDTO> userDTO = this.restTemplate.getForEntity(
+//                userServiceHost, UserDTO.class, userId
+//        );
+
+        // 使用Ribbon负载均衡来调取别的服务
+        UserDTO userDTO = this.restTemplate.getForObject(
+                "http://user-center/users/{userId}",
+                UserDTO.class,
+                userId
         );
 
         ShareDTO res = new ShareDTO();
         BeanUtils.copyProperties(shareInfo, res);
-        res.setWxNickName(Objects.requireNonNull(userDTO.getBody()).getWxNickname());
+        res.setWxNickName(Objects.requireNonNull(userDTO).getWxNickname());
         return res;
     }
 
