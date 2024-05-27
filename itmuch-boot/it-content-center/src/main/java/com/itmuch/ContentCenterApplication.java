@@ -1,5 +1,7 @@
 package com.itmuch;
 
+import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.RandomRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -19,4 +21,10 @@ public class ContentCenterApplication {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
+    // 这种方式是全局配置的，即在content调取其它服务是，都是使用随机算法
+//    @Bean
+//    public IRule randomRule() {
+//        return  new RandomRule();
+//    }
 }
