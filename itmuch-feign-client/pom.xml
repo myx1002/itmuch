@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>com.itmuch</groupId>
         <artifactId>itmuch</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>itmuch-boot</artifactId>
+    <artifactId>itmuch-feign-client</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>it-content-center</module>
-        <module>it-user-center</module>
+        <module>it-user-center-client</module>
+        <module>it-content-center-client</module>
     </modules>
 
     <properties>
@@ -24,14 +24,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <scope>provided </scope>
         </dependency>
     </dependencies>
-
 
 </project>
