@@ -25,3 +25,15 @@ spring:
           test: test
   application:
     name: content-center
+
+# SpringBoot的默认日志级别是info级别，feign的日志级别是debug级别，info > debug，所以在默认情况下，feign的日志不会输出
+logging:
+  level:
+    com.itmuch.feignClient: debug
+
+feign:
+  client:
+    config:
+      UserInfoFeignClient: # 配置user-center服务端的日志级别
+        loggerLevel: full
+        connectTimeout: 5000 # 连接超时时间

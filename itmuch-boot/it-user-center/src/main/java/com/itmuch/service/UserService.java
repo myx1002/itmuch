@@ -1,5 +1,6 @@
 package com.itmuch.service;
 
+import com.itmuch.domain.dto.UserDTO;
 import com.itmuch.domain.entity.User;
 public interface UserService{
 
@@ -9,7 +10,7 @@ public interface UserService{
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(Integer id);
+    UserDTO selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(User record);
 

@@ -1,5 +1,6 @@
 package com.itmuch.controller;
 import com.itmuch.domain.dto.ShareDTO;
+import com.itmuch.domain.dto.UserDTO;
 import com.itmuch.domain.entity.Share;
 import com.itmuch.service.ShareService;
 import com.itmuch.service.impl.ShareServiceImpl;

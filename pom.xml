@@ -10,7 +10,6 @@
 
     <modules>
         <module>itmuch-boot</module>
-        <module>itmuch-feign-client</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

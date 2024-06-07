@@ -1,4 +1,5 @@
 package com.itmuch.controller;
+import com.itmuch.domain.dto.UserDTO;
 import com.itmuch.domain.entity.User;
 import com.itmuch.mapper.UserMapper;
 import com.itmuch.service.UserService;
@@ -30,7 +31,7 @@ public class UserController {
     * @return 单条数据
     */
     @GetMapping("/{id}")
-    public User selectOne(@PathVariable Integer id) {
+    public UserDTO selectOne(@PathVariable Integer id) {
         return userService.selectByPrimaryKey(id);
     }
 

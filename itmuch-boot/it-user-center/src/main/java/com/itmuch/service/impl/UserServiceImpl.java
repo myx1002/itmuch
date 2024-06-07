@@ -1,6 +1,8 @@
 package com.itmuch.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.itmuch.domain.dto.UserDTO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +32,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>  implements U
     }
 
     @Override
-    public User selectByPrimaryKey(Integer id) {
-        return userMapper.selectByPrimaryKey(id);
+    public UserDTO selectByPrimaryKey(Integer id) {
+        UserDTO userDTO = new UserDTO();
+        BeanUtils.copyProperties(userMapper.selectByPrimaryKey(id),userDTO);
+        return userDTO;
     }
 
     @Override

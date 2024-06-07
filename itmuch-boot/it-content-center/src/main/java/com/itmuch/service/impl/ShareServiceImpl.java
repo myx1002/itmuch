@@ -2,11 +2,9 @@ package com.itmuch.service.impl;
 
 import com.itmuch.domain.dto.ShareDTO;
 import com.itmuch.domain.dto.UserDTO;
+import com.itmuch.feignClient.UserCenterFeignClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,18 +15,19 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itmuch.domain.entity.Share;
 import com.itmuch.mapper.ShareMapper;
 import com.itmuch.service.ShareService;
-import org.springframework.web.client.RestTemplate;
 
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ShareServiceImpl extends ServiceImpl<ShareMapper, Share> implements ShareService {
 
     // 分享服务
     private final ShareMapper shareMapper;
 
-    private final RestTemplate restTemplate;
+//    private final RestTemplate restTemplate;
+//
+//    private final DiscoveryClient discoveryClient;
 
-    private final DiscoveryClient discoveryClient;
+    private final UserCenterFeignClient userInfoFeignClient;
 
     @Override
     public int updateBatch(List<Share> list) {
@@ -86,11 +85,14 @@ public class ShareServiceImpl extends ServiceImpl<ShareMapper, Share> implements
 //        );
 
         // 使用Ribbon负载均衡来调取别的服务
-        UserDTO userDTO = this.restTemplate.getForObject(
-                "http://user-center/users/{userId}",
-                UserDTO.class,
-                userId
-        );
+//        UserDTO userDTO = this.restTemplate.getForObject(
+//                "http://user-center/users/{userId}",
+//                UserDTO.class,
+//                userId
+//        );
+
+        // 使用Feign来调取别的服务
+        UserDTO userDTO = userInfoFeignClient.selectOne(userId);
 
         ShareDTO res = new ShareDTO();
         BeanUtils.copyProperties(shareInfo, res);
