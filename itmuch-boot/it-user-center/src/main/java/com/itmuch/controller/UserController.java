@@ -1,4 +1,5 @@
 package com.itmuch.controller;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.itmuch.domain.dto.UserDTO;
 import com.itmuch.domain.entity.User;
 import com.itmuch.mapper.UserMapper;
@@ -35,4 +36,12 @@ public class UserController {
         return userService.selectByPrimaryKey(id);
     }
 
+    @GetMapping("/hot")
+    @SentinelResource("hot")
+    public String selectHotOne(
+            @RequestParam(required = false) String a,
+            @RequestParam(required = false) String b
+    ) {
+        return a + "-" + b;
+    }
 }

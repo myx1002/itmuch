@@ -11,5 +11,16 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8181
   application:
     name: user-center
+
+## 整体来说，这段配置的作用是开启并公开Spring Boot应用的所有管理端点，通过HTTP接口对外部访问开放。
+## 在生产环境中使用时，应谨慎考虑安全因素，可能需要限制暴露的端点以避免潜在的安全风险。
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
