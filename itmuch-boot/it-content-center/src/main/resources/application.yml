@@ -27,6 +27,13 @@ spring:
       transport:
         # 指定sentinel 控制台地址
         dashboard: localhost:8181
+        # 指定和控制台通信的IP
+        client-ip: 127.0.0.1
+        # 指定和控制台通信的端口，默认值8719
+        # 如不设置，会自动从8719开始扫描，依次+1，直到找到一个空闲端口
+        port: 8719
+        # 心跳发送周期，模式10秒
+        heartbeat-interval-ms: 10000
   application:
     name: content-center
 
