@@ -53,7 +53,6 @@ feign:
     enabled: true
     max-connections: 200 # 最大连接数
     max-connections-per-route: 50 # 每个路由的最大连接数
-
 ## 整体来说，这段配置的作用是开启并公开Spring Boot应用的所有管理端点，通过HTTP接口对外部访问开放。
 ## 在生产环境中使用时，应谨慎考虑安全因素，可能需要限制暴露的端点以避免潜在的安全风险。
 management:

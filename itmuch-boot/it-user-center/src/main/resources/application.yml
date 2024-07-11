@@ -13,6 +13,7 @@ spring:
         server-addr: 127.0.0.1:8848
     sentinel:
       transport:
+        # 指定sentinel 控制台地址
         dashboard: localhost:8181
   application:
     name: user-center
