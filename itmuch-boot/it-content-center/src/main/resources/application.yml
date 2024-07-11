@@ -43,6 +43,8 @@ logging:
     com.itmuch.feignClient: debug
 
 feign:
+  sentinel:
+    enabled: true
   client:
     config:
       UserInfoFeignClient: # 配置user-center服务端的日志级别
